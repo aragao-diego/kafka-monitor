@@ -1,0 +1,161 @@
+version: '3.2'
+networks:
+  kafka-net:
+    attachable: true
+
+services:
+  zookeeper:
+    image: qnib/plain-zookeeper:2018-04-25
+    ports:
+      - "2181:2181"
+    networks:
+      - kafka-net
+  zkui:
+    image: qnib/plain-zkui@sha256:30c4aa1236ee90e4274a9059a5fa87de2ee778d9bfa3cb48c4c9aafe7cfa1a13
+    ports:
+      - "9090:9090"
+    networks:
+      - kafka-net
+  broker-1:
+    image: integr8/kafka
+    hostname: "broker-1"
+    ports:
+      - "9092:9092"
+    deploy:
+      replicas: 1
+    environment:
+      - KAFKA_BROKER_ID=1
+    networks:
+      - kafka-net
+  broker-2:
+    image: integr8/kafka
+    hostname: "broker-2"
+    ports:
+      - "9093:9092"
+    deploy:
+      replicas: 1
+    environment:
+      - KAFKA_BROKER_ID=2
+    networks:
+      - kafka-net
+  broker-3:
+    image: integr8/kafka
+    hostname: "broker-3"
+    ports:
+      - "9094:9092"
+    deploy:
+      replicas: 1
+    environment:
+      - KAFKA_BROKER_ID=3
+    networks:
+      - kafka-net
+  manager:
+    image: qnib/plain-kafka-manager:2018-04-25@sha256:8a30ced91432b9b3ef21bc66c4b5635690e1af823684fe6e29ab866d839d10ca
+    ports:
+      - "9000:9000"
+    environment:
+      ZOOKEEPER_HOSTS: "tasks.zookeeper:2181"
+    networks:
+      - kafka-net
+  producer-1:
+    image: qnib/golang-kafka-producer:2018-05-01.12
+    deploy:
+      replicas: 1
+    depends_on:
+      - broker-1
+    environment:
+      - KAFKA_BROKER=tasks.broker-1
+      - KAFKA_CREATE_TOPICS=test:1:1,scaled:2:2
+      - KAFKA_TOPIC=scaled
+      - MSG_COUNT=-1
+    networks:
+      - kafka-net
+  producer-2:
+    image: qnib/golang-kafka-producer:2018-05-01.12
+    deploy:
+      replicas: 1
+    depends_on:
+      - broker-2
+    environment:
+      - KAFKA_BROKER=tasks.broker-2
+      - KAFKA_CREATE_TOPICS=test:1:1,scaled:2:2
+      - KAFKA_TOPIC=scaled
+      - MSG_COUNT=-1
+    networks:
+      - kafka-net
+  producer-3:
+    image: qnib/golang-kafka-producer:2018-05-01.12
+    deploy:
+      replicas: 1
+    depends_on:
+      - broker-3
+    environment:
+      - KAFKA_BROKER=tasks.broker-3
+      - KAFKA_CREATE_TOPICS=test:1:1,scaled:2:2
+      - KAFKA_TOPIC=scaled
+      - MSG_COUNT=-1
+    networks:
+      - kafka-net
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.6.1
+    volumes:
+      - ./metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml
+    networks:
+      - kafka-net
+    depends_on:
+      - kibana
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.1
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      # - ./elasticsearch/esdata01/:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - kafka-net
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.6.1
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://tasks.elasticsearch:9200
+    networks:
+      - kafka-net
+  jmx_exporter-1:
+    image: integr8/jmx_exporter
+    ports:
+      - "5555:5555"
+    networks:
+      - kafka-net
+    environment: 
+      - JMX_EXPORTER_CONFIG=/etc/jmx_exporter/broker.yml
+    volumes: 
+      - "./jmx_exporter/broker-1.yml:/etc/jmx_exporter/broker.yml"
+    depends_on: 
+      - broker-1
+  jmx_exporter-2:
+    image: integr8/jmx_exporter
+    ports:
+      - "5556:5555"
+    networks:
+      - kafka-net
+    environment: 
+      - JMX_EXPORTER_CONFIG=/etc/jmx_exporter/broker-2.yml
+    volumes: 
+      - "./jmx_exporter/broker-2.yml:/etc/jmx_exporter/broker.yml"
+    depends_on: 
+      - broker-2
+  jmx_exporter-3:
+    image: integr8/jmx_exporter
+    ports:
+      - "5557:5555"
+    networks:
+      - kafka-net
+    volumes: 
+      - "./jmx_exporter/broker-3.yml:/etc/jmx_exporter/broker.yml"
+    environment: 
+      - JMX_EXPORTER_CONFIG=/etc/jmx_exporter/broker-3.yml
+    depends_on:
+      - broker-3
+    

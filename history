@@ -1,0 +1,309 @@
+ 9696  docker stack deploy --compose-file docker-compose.yml stress
+ 9697  docker service ls stress
+ 9698  docker service ls
+ 9699  docker network ls
+ 9700  docker run -t --rm --network kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+ 9701  docker run -t --rm --network stress_default qnib/golang-kafka-producer:2018-05-01.5 5
+ 9702  docker stack --help
+ 9703  docker stack rm stress
+ 9704  docker stack deploy --compose-file docker-compose.yml stress
+ 9705  docker run -t --rm --network stress_default qnib/golang-kafka-producer:2018-05-01.5 5
+ 9706  docker network ls
+ 9707  docker run -t --rm --network stress_default qnib/golang-kafka-producer:2018-05-01.5 5
+ 9708  docker stack rm stress
+ 9709  docker stack deploy --compose-file docker-compose.yml stress
+ 9710  docker run -t --rm --network stress_kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+ 9711  docker exec -t -e JMX_PORT="" \\n   $(docker ps -q --filter 'label=com.docker.swarm.service.name=broker'|head -n1) \\n     /opt/kafka/bin/kafka-topics.sh --zookeeper tasks.zookeeper:2181 \\n     --partitions=1 --replication-factor=1 --create --topic test
+ 9712  $(docker ps -q --filter 'label=com.docker.swarm.service.name=broker'|head -n1)
+ 9713  docker ps -q --filter 'label=com.docker.swarm.service.name=broker'|head -n1
+ 9714  docker ps -q --filter 'label=com.docker.swarm.service.name=broker'
+ 9715  docker ps
+ 9716  docker ps -q
+ 9717  docker ps -q --filter 'label=com.docker.swarm.service.name=broker'
+ 9718  docker ps -q --filter 'label=com.docker.swarm.service.name=st'
+ 9719  docker ps -q --filter 'label=com.docker.swarm.service.name=stress'
+ 9720  docker ps -q --filter 'label=com.docker.swarm.service.name=stress_broker'
+ 9721  docker exec -t -e JMX_PORT="" \\n   $(docker ps -q --filter 'label=com.docker.swarm.service.name=stress_broker'|head -n1) \\n     /opt/kafka/bin/kafka-topics.sh --zookeeper tasks.zookeeper:2181 \\n     --partitions=1 --replication-factor=1 --create --topic test
+ 9722  docker exec -t -e JMX_PORT="" \\n   $(docker ps -q --filter 'label=com.docker.swarm.service.name=stress_broker'|head -n1) \\n     /opt/kafka/bin/kafka-topics.sh --zookeeper tasks.zookeeper:2181 \\n     --partitions=2 --replication-factor=2 --create --topic scaled
+ 9723  docker ps
+ 9724  docker logs stress_manager.1.kxo1zqxgbpqglkptw8rxlcvog
+ 9725  docker restart stress_manager.1.kxo1zqxgbpqglkptw8rxlcvog
+ 9726  docker logs stress_manager.1.kxo1zqxgbpqglkptw8rxlcvog
+ 9727  docker ps
+ 9728  docker restart stress_broker.1.i7emnug3xf6k73y3z2cd9g4ss stress_broker.3.0lz9ahjzmsl95dj053ew0tc9v stress_broker.2.bq5cwl6ihabkpdbaa7osm3bi6
+ 9729  docker logs stress_manager.1.kxo1zqxgbpqglkptw8rxlcvog
+ 9730  docker run -t --rm --network stress_kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+ 9731  cd git
+ 9732  cd si
+ 9733  cd sicoob
+ 9734  ls
+ 9735  cd kafka
+ 9736  ls
+ 9737  cd ..
+ 9738  git clone https://github.com/qnib/golang-kafka-producer.git
+ 9739  cd golang-kafka-producer
+ 9740  ls
+ 9741  code .
+ 9742  docker build -t golang-kafka-producer .
+ 9743  cd git/sicoob
+ 9744  ls
+ 9745  git clone https://github.com/stefanprodan/swarmprom.git
+ 9746  docker run -t --rm --network stress_kafka-net golang-kafka-producer 5
+ 9747  docker ps
+ 9748  docker logs https://github.com/stefanprodan/swarmprom.git -f
+ 9749  docker logs stress_manager.1.5nvwn2mblr497xtukok45sn61 -f
+ 9750  docker run -t --rm --network stress_kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+ 9751  ls
+ 9752  cd swarmprom
+ 9753  ll
+ 9754  code .
+ 9755  docker stack deploy -c docker-compose.yml prm
+ 9756  docker ps
+ 9757  docker stack rm prm
+ 9758  ADMIN_USER=admin \\nADMIN_PASSWORD=admin \\nSLACK_URL=https://hooks.slack.com/services/TOKEN \\nSLACK_CHANNEL=devops-alerts \\nSLACK_USER=alertmanager \\n
+ 9759  echo $ADMIN_USER
+ 9760  docker stack deploy -c docker-compose.yml mon
+ 9761  free -h
+ 9762  docker stack rm mon
+ 9763  docker ps
+ 9764  docker inspect stress_broker.1.16agj2kua6iwqn2l5fkp5czxb
+ 9765  docker ps
+ 9766  docker stack deploy -c monitoracao.yml mon
+ 9767  docker stack rm mon
+ 9768  docker stack deploy -c monitoracao.yml mon
+ 9769  docker ps
+ 9770  ll
+ 9771  id
+ 9772  cat /etc/fstab
+ 9773  df -h
+ 9774  acl
+ 9775  docker ps
+ 9776  docker stack rm mon
+ 9777  docker stack deploy -c monitoracao.yml mon
+ 9778  docker ps
+ 9779  docker stack rm mon
+ 9780  docker stack deploy -c monitoracao.yml mon
+ 9781  docker ps
+ 9782  docker ps -a
+ 9783  docker stack rm mon
+ 9784  docker stack deploy -c monitoracao.yml mon
+ 9785  docker ps
+ 9786  docker stack rm mon
+ 9787  docker stack deploy -c monitoracao.yml mon
+ 9788  docker ps
+ 9789  docker service ls
+ 9790  docker service --help
+ 9791  docker service sacle ljn50pvnk4kl 1
+ 9792  docker service scale ljn50pvnk4kl 1
+ 9793  docker service scale --help
+ 9794  docker service ls
+ 9795  docker service update --replicas=1 mon_prometheus
+ 9796  docker service update --label-add="grafana" mon_prometheus
+ 9797  docker service update --label-add="prometheus" mon_prometheus
+ 9798  docker node ls
+ 9799  docker node update --label-add prometheus x4w5jbzvkqdl2iez1vzxmz3e1
+ 9800  docker service update --replicas=1 mon_prometheus
+ 9801  docker node update --label-add prometheus=true x4w5jbzvkqdl2iez1vzxmz3e1
+ 9802  docker service update --replicas=1 mon_prometheus
+ 9803  free -h
+ 9804  cod e.
+ 9805  code .
+ 9806  docker stack rm mon
+ 9807  docker stack deploy -c monitoracao.yml mon
+ 9808  docker ps
+ 9809  docker stack rm mon
+ 9810  docker stack deploy -c monitoracao.yml mon
+ 9811  docker ps
+ 9812  docker stack ls
+ 9813  docker service update --replicas=1 mon_grafana
+ 9814  free -h
+ 9815  docker ps
+ 9816  docker logs mon_prometheus.1.t7tyb09oaclk5ob9mp9uu7v9i
+ 9817  docker ps
+ 9818  docker inspect mon_prometheus.1.t7tyb09oaclk5ob9mp9uu7v9i
+ 9819  docker run -t --rm --network stress_kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+ 9820  docker ps
+ 9821  docker restart mon_prometheus.1.t7tyb09oaclk5ob9mp9uu7v9i
+ 9822  docker logs mon_prometheus.1.t7tyb09oaclk5ob9mp9uu7v9i
+ 9823  docker restart mon_prometheus.1.t7tyb09oaclk5ob9mp9uu7v9i
+ 9824  docker ps
+ 9825  docker restart mon_prometheus.1.on3oae7ng8c9tb2ejyox5yw30
+ 9826  docker logs -f mon_prometheus.1.on3oae7ng8c9tb2ejyox5yw30
+ 9827  docker ps
+ 9828  docker restart mon_prometheus.1.on3oae7ng8c9tb2ejyox5yw30
+ 9829  docker stack rm mon
+ 9830  docker stack deploy -c monitoracao.yml mon
+ 9831  docker stack deploy -c monitoracao.yml mon
+ 9832  docker ps
+ 9833  docker exec -ti mon_prometheus.1.lelsylidsnuv8071y5788y3e5 bash
+ 9834  docker exec -ti mon_prometheus.1.lelsylidsnuv8071y5788y3e5 sh
+ 9835  docker ps
+ 9836  docker exec -ti mon_prometheus.1.lelsylidsnuv8071y5788y3e5 sh
+ 9837  docker ps
+ 9838  docker logs mon_kafka_exporter.1.l3ccpzdzt5wvqsx4xis66e93y
+ 9839  docker logs mon_kafka_exporter.1.l3ccpzdzt5wvqsx4xis66e93y -f
+ 9840  docker ps
+ 9841  docker restart mon_kafka_exporter.1.l3ccpzdzt5wvqsx4xis66e93y
+ 9842  docker logs mon_kafka_exporter.1.l3ccpzdzt5wvqsx4xis66e93y
+ 9843  docker logs mon_kafka_exporter.1.l3ccpzdzt5wvqsx4xis66e93y -f
+ 9844  docker exec -ti mon_prometheus.1.lelsylidsnuv8071y5788y3e5 sh
+ 9845  docker ps
+ 9846  git clone https://github.com/prometheus/jmx_exporter.git
+ 9847  cd git/sicoob
+ 9848  git clone https://github.com/prometheus/jmx_exporter.git
+ 9849  cd jmx_exporter
+ 9850  mvn package
+ 9851  ls
+ 9852  cd jmx_prometheus_javaagent
+ 9853  ll
+ 9854  cd ..
+ 9855  ls
+ 9856  cd collector
+ 9857  ll
+ 9858  cd ..
+ 9859  ls
+ 9860  code .
+ 9861  docker build -t jmx-exporter .
+ 9862  docker run -t --rm --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=' jmx-exporter
+ 9863  docker ps
+ 9864  docker build -t jmx-exporter .
+ 9865  exit
+ 9866  docker ps
+ 9867  docker run -t --rm --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_REMOTE_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' jmx-exporter
+ 9868  docker run -t --rm --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' jmx-exporter
+ 9869  docker ps
+ 9870  exit
+ 9871  docker ps
+ 9872  docker logs e2ff4efc032d
+ 9873  docker rm e2ff4efc032d
+ 9874  docker rm e2ff4efc032d -f
+ 9875  cd git/sicoob
+ 9876  ls
+ 9877  cd jmx_exporter
+ 9878  ls
+ 9879  docker run -tid -p 5556:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' jmx-exporter
+ 9880  docker ps
+ 9881  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' jmx-exporter
+ 9882  docker ps
+ 9883  docker rm 33a5fb2ba4bf -f
+ 9884  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxbs:1234' jmx-exporter
+ 9885  docker run -tid 7d8ee03d24d737067a1fd9e95d075eb416ee4b80e5824e0264964027d35c8551 bash
+ 9886  docker ps
+ 9887  docker run -tid 7d8ee03d24d7 bash
+ 9888  docker exec -ti 7d8ee03d24d7 bash
+ 9889  docker ps
+ 9890  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxbs:1234' jmx-exporter
+ 9891  docker ps
+ 9892  docker rm -f jovial_varahamihira
+ 9893  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxbs:12342' --name jmx-exporter jmx-exporter
+ 9894  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxbs:12342' --name jmx-exporter jmx-exporter
+ 9895  docker rm -f jmx-exporter
+ 9896  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxbs:12342' --name jmx-exporter jmx-exporter
+ 9897  docker ps
+ 9898  docker rm -f jmx-exporter
+ 9899  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9900  docker logs jmx-exporter -f
+ 9901  docker ps
+ 9902  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORTa=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9903  docker rm -f jmx-exporter
+ 9904  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORTa=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9905  docker exec -ti jmx-exporter bash
+ 9906  docker logs jmx-exporter -f
+ 9907  docker rm -f jmx-exporter
+ 9908  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9909  docker logs jmx-exporter -f
+ 9910  docker ps
+ 9911  docker rm -f jmx-exporter
+ 9912  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9913  docker logs jmx-exporter -f
+ 9914  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9915  docker rm -f jmx-exporter
+ 9916  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234' --name jmx-exporter jmx-exporter
+ 9917  docker rm -f jmx-exporter
+ 9918  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT="stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:1234"' --name jmx-exporter jmx-exporter
+ 9919  docker logs jmx-exporter -f
+ 9920  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT="1234' --name jmx-exporter jmx-exporter
+ 9921  docker logs jmx-exporter -f
+ 9922  docker rm -f jmx-exporter
+ 9923  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT="1234' --name jmx-exporter jmx-exporter
+ 9924  docker logs jmx-exporter -f
+ 9925  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=1234' --name jmx-exporter jmx-exporter
+ 9926  docker logs jmx-exporter -f
+ 9927  docker rm -f jmx-exporter
+ 9928  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=1234' --name jmx-exporter jmx-exporter
+ 9929  docker logs jmx-exporter -f
+ 9930  docker rm -f jmx-exporter
+ 9931  docker ps
+ 9932  docker inspect stress_broker.1.16agj2kua6iwqn2l5fkp5czxb
+ 9933  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=10.0.4.20:1234' --name jmx-exporter jmx-exporter
+ 9934  docker logs jmx-exporter -f
+ 9935  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=localhost:1234' --name jmx-exporter jmx-exporter
+ 9936  docker rm -f jmx-exporter
+ 9937  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=localhost:1234' --name jmx-exporter jmx-exporter
+ 9938  docker logs jmx-exporter -f
+ 9939  docker restart stress_broker.1.16agj2kua6iwqn2l5fkp5czxb\t
+ 9940  docker rm -f jmx-exporter
+ 9941  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=10.0.4.20:1234' --name jmx-exporter jmx-exporter
+ 9942  docker logs jmx-exporter -f
+ 9943  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=10.0.4.20:1234' --link  --name jmx-exporter jmx-exporter
+ 9944  docker run --help
+ 9945  docker port
+ 9946  docker port 1234
+ 9947  docker port stress_broker.1.16agj2kua6iwqn2l5fkp5czxb\t
+ 9948  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=10.0.4.20:1234' --link server:stress_broker.1.16agj2kua6iwqn2l5fkp5czxb  --name jmx-exporter jmx-exporter
+ 9949  docker rm -f jmx-exporter
+ 9950  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=10.0.4.20:1234' --link server:stress_broker.1.16agj2kua6iwqn2l5fkp5czxb  --name jmx-exporter jmx-exporter
+ 9951  docker rm -f jmx-exporter
+ 9952  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link server:stress_broker.1.16agj2kua6iwqn2l5fkp5czxb  --name jmx-exporter jmx-exporter
+ 9953  docker logs jmx-exporter -f
+ 9954  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:server  --name jmx-exporter jmx-exporter
+ 9955  docker rm -f jmx-exporter
+ 9956  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:server  --name jmx-exporter jmx-exporter
+ 9957  docker logs jmx-exporter -f
+ 9958  docker rm -f jmx-exporter
+ 9959  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link 'stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:server'  --name jmx-exporter jmx-exporter
+ 9960  docker logs jmx-exporter -f
+ 9961  docker run --help
+ 9962  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link 'stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:server'  --name jmx-exporter jmx-exporter
+ 9963  docker rm -f jmx-exporter
+ 9964  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link='stress_broker.1.16agj2kua6iwqn2l5fkp5czxb:server'  --name jmx-exporter jmx-exporter
+ 9965  docker logs jmx-exporter -f
+ 9966  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234'  --name jmx-exporter jmx-exporter
+ 9967  docker rm -f jmx-exporter
+ 9968  docker ps
+ 9969  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=server:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9970  docker logs jmx-exporter -f
+ 9971  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9972  docker rm -f jmx-exporter
+ 9973  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9974  docker logs jmx-exporter -f
+ 9975  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9976  docker rm -f jmx-exporter
+ 9977  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9978  docker ps
+ 9979  docker logs jmx-exporter -f
+ 9980  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9981  docker logs jmx-exporter -f
+ 9982  docker rm -f jmx-exporter
+ 9983  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9984  docker logs jmx-exporter -f
+ 9985  ls
+ 9986  docker ps
+ 9987  docker build -t jmx-exporter .
+ 9988  docker rm -f jmx-exporter
+ 9989  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9990  docker logs jmx-exporter -f
+ 9991  docker rm -f jmx-exporter
+ 9992  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9993  docker logs jmx-exporter -f
+ 9994  docker ps
+ 9995  docker build -t jmx-exporter .
+ 9996  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9997  docker rm -f jmx-exporter
+ 9998  docker run -tid -p 5557:5556 --network stress_kafka-net -e 'JMX_EXPORTER_CONFIG=/etc/jmx_exporter/kafka-2_0_0.yml' -e 'JMX_EXPORTER_LISTEN_PORT=1234' --link='stress_broker.1.tbn35u9rc8xnw4haw0y6a02dd:server'  --name jmx-exporter jmx-exporter
+ 9999  docker logs jmx-exporter -f
+10000  docker build -t jmx-exporter .
+10001  cd git/sicoob
+10002  ls
+10003  cd kafka
+10004  ll

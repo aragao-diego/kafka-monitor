@@ -1,0 +1,13 @@
+add kafka cluster - tasks.zookeeper:2181
+
+
+
+name=kafka&zkHosts=tasks.zookeeper%3A2181&kafkaVersion=1.0.0&jmxEnabled=true&jmxUser=&jmxPass=&logkafkaEnabled=true&tuning.brokerViewUpdatePeriodSeconds=30&tuning.clusterManagerThreadPoolSize=2&tuning.clusterManagerThreadPoolQueueSize=100&tuning.kafkaCommandThreadPoolSize=2&tuning.kafkaCommandThreadPoolQueueSize=100&tuning.logkafkaCommandThreadPoolSize=2&tuning.logkafkaCommandThreadPoolQueueSize=100&tuning.logkafkaUpdatePeriodSeconds=30&tuning.partitionOffsetCacheTimeoutSecs=5&tuning.brokerViewThreadPoolSize=8&tuning.brokerViewThreadPoolQueueSize=1000&tuning.offsetCacheThreadPoolSize=8&tuning.offsetCacheThreadPoolQueueSize=1000&tuning.kafkaAdminClientThreadPoolSize=8&tuning.kafkaAdminClientThreadPoolQueueSize=1000&securityProtocol=PLAINTEXT
+
+
+
+
+docker run -t --rm --network stress_kafka-net qnib/golang-kafka-producer:2018-05-01.5 5
+
+
+ docker exec $(docker ps --filter 'name=metric' -q) metricbeat setup --dashboards -E setup.kibana.host=tasks.kibana:5601
